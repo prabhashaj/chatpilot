@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+from preprocess.text_processing import process_text
+
+
 def selenium_scrape_and_save_to_csv(url):
     """Scrapes a website using Selenium and extracts its content.
 
@@ -68,3 +71,7 @@ def selenium_scrape_and_save_to_csv(url):
 # url = "https://www.apple.com/"
 url = "https://hianime.to/home"
 content = selenium_scrape_and_save_to_csv(url)
+
+with open("./outputs/selenium_output.txt", "r", encoding="utf-8") as file:
+    text = file.read() 
+    process_text(text)
