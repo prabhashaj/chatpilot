@@ -1,8 +1,9 @@
 import csv
-import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+
+from preprocess.text_processing import process_text
+
 
 def selenium_scrape_and_save_to_csv(url):
     """Scrapes a website using Selenium and extracts its content.
@@ -25,18 +26,22 @@ def selenium_scrape_and_save_to_csv(url):
 
         # Extract content using BeautifulSoup or other methods
         soup = BeautifulSoup(driver.page_source, 'html.parser')
-        content = soup.get_text()  # Example: extract all text
+        content = soup.get_text() 
         
-        # total_content
+        # total_content in form of text
         content = content.replace('\u200e', '')
         content = content.replace('\u200e', '')
         content = content.replace('\n', '')
-        with open("./outputs/selenium_output.txt", "w", encoding="utf-8") as file:
+        with open("./outputs/selenium_output.txt" , "w", encoding="utf-8") as file:
+            # Write the content to the file
             file.write(content) 
+            # process the whole content
+            process_text(content)
 
         # links
         links = soup.find_all('a')
         with open("./outputs/selenium_output[routes].csv", mode='w', newline='', encoding='utf-8') as file:
+            # Writing contents into routes
             csv_writer = csv.writer(file)
             csv_writer.writerow(['Link Text', 'URL'])
 
@@ -44,10 +49,14 @@ def selenium_scrape_and_save_to_csv(url):
                 text = link.get_text(strip=True)
                 href = link.get('href')
                 csv_writer.writerow([text, href])
+            
+            #process the routes
+            ## to be done
 
         #images
         images = soup.find_all('img')
         with open("./outputs/selenium_output[images].csv", mode='w', newline='', encoding='utf-8') as file:
+            # write image links to file
             csv_writer = csv.writer(file)
             csv_writer.writerow(['Alt text','Image URLs'])
             
@@ -55,6 +64,9 @@ def selenium_scrape_and_save_to_csv(url):
                 alt_text = image.get('alt')
                 src = image.get('src')
                 csv_writer.writerow([alt_text, src])
+
+            # process the image link content
+            ## to be done
 
         # Close the WebDriver
         driver.quit()
@@ -64,7 +76,7 @@ def selenium_scrape_and_save_to_csv(url):
         print(f"Error scraping {url}: {e}")
         return None
 
-# Example usage:
 # url = "https://www.apple.com/"
-url = "https://hianime.to/home"
+url = "https://www.youtube.com/results?search_query=ai"
 content = selenium_scrape_and_save_to_csv(url)
+print(content)
