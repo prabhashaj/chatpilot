@@ -1,5 +1,4 @@
 import chromadb
-from chromadb.utils import embedding_functions
 
 def process_text(text):
     
@@ -15,19 +14,15 @@ def process_text(text):
     client = chromadb.PersistentClient(path="./database/")
 
     # Create or load a collection in ChromaDB
-    collection_name = "my_text_data"
+    collection_name = "text_data"
     collection = client.create_collection(collection_name)
 
     # Example text data to store 
-    id = 1
-    texts = []
-    for chunk in chunks:
-        text_data = " ".join(chunk)
-        texts.append({"id": str(id), "text": text_data})
-        id += 1
 
-    # Use a sentence-transformers embedding function (or you can define your own embedding model)
-    # embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction("all-MiniLM-L6-v2")
+    texts = []
+    for idx,chunk in enumerate(chunks):
+        text_data = " ".join(chunk)
+        texts.append({"id": str(idx+1), "text": text_data})
 
     # Add text data to the collection with embeddings
     for text_data in texts:

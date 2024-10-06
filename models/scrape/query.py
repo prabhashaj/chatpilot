@@ -2,9 +2,9 @@ import chromadb
 client = chromadb.PersistentClient('./database/')
 # Query the collection (e.g., find related text to a query)
 
-query_text = "where can i see one piece?"
+query_text = "what is ai?"
 # query_embedding = embedding_function(query_text)
-collection_name = "my_text_data"
+collection_name = "text_data"
 
 collection = client.get_collection(collection_name)
 
