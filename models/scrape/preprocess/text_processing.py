@@ -28,6 +28,7 @@ def process_text(text):
 
     # Add text data to the collection with embeddings
     for text_data in texts:
+        # data preprocess 
         collection.add(
             documents=[text_data["text"]],
             ids=[text_data["id"]],       
