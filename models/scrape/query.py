@@ -31,5 +31,7 @@ def query_db(query_text):
     #     print(f"Related text: {result}")
     
     return results
+
+# query_text = "What is the history of anime?"
 # ouput = query_db(query_text)
 # print(ouput)
