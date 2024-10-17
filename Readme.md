@@ -28,7 +28,14 @@ I will review and accept the pr
 create empty folder .venv in the root folder ( chatpilot )
 poetry install
 poetry shell
-set PYTHONPATH=<your path>/chatpilot
+set PYTHONPATH=<your path>chatpilot
+
+eg:
+   set PYTHONPATH=C:\Users\saiha\OneDrive\Desktop\Leo-new\self\leocodeio-ext\production\chatpilot
+
+   unix:
+   export PYTHONPATH=/path/to/your/project/root
+
 cd models/scrape
 python selenium_scrapper.py [ uncomment the code to run individually]
 python query.py [ uncomment the code to run individually]
