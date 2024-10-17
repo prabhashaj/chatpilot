@@ -31,10 +31,10 @@ poetry shell
 set PYTHONPATH=<your path>chatpilot
 
 eg:
-   set PYTHONPATH=C:\Users\saiha\OneDrive\Desktop\Leo-new\self\leocodeio-ext\production\chatpilot
+   set PYTHONPATH=C:\path\to\chatpilot
 
    unix:
-   export PYTHONPATH=/path/to/your/project/root
+   export PYTHONPATH=/path/to/chatpilot
 
 cd models/scrape
 python selenium_scrapper.py [ uncomment the code to run individually]
