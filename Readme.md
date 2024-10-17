@@ -28,6 +28,14 @@ I will review and accept the pr
 create empty folder .venv in the root folder ( chatpilot )
 poetry install
 poetry shell
+set PYTHONPATH=<your path>chatpilot
+
+eg:
+   set PYTHONPATH=C:\path\to\chatpilot
+
+   unix:
+   export PYTHONPATH=/path/to/chatpilot
+
 cd models/scrape
 python selenium_scrapper.py [ uncomment the code to run individually]
 python query.py [ uncomment the code to run individually]
@@ -38,7 +46,8 @@ python query.py [ uncomment the code to run individually]
 in root folder which is chatpilot/
 
 ```
-uvicorn models.api.fast_api:app
+cd models/api
+uvicorn fast_api:app --reload
 ```
 
 ## contents

@@ -2,7 +2,8 @@ import csv
 import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from .preprocess.text_processing import process_text
+from models.scrape.preprocess.text_processing import process_text
+
 
 
 def selenium_scrape_and_save_to_csv(url):
