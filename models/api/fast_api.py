@@ -4,9 +4,9 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
-from ..scrape.query import query_db
-from ..scrape.selenium_scrapper import selenium_scrape_and_save_to_csv
-from ..history.query_history import QueryHistory, get_query_history, HistoryItem
+from models.scrape.query import query_db
+from models.scrape.selenium_scrapper import selenium_scrape_and_save_to_csv
+from models.history.query_history import QueryHistory, get_query_history, HistoryItem
 
 # Initialize FastAPI app
 app = FastAPI()
