@@ -2,7 +2,7 @@ import os
 import chromadb
 
 
-def process_text(text):
+def process_text(text, website_name):
     # current_dir = os.path.dirname(os.path.abspath(__file__))
     # db_path = os.path.join(current_dir, "../Vector_database/")
 
@@ -13,11 +13,10 @@ def process_text(text):
     print(chunks[0])
 
     # Initialize ChromaDB client
-    client = chromadb.Client()
-    # db to store
     client = chromadb.PersistentClient(path="./vector_database/")
-    # Create or load a collection in ChromaDB
-    collection_name = "text_data"
+
+    # Create or load a collection in ChromaDB for the specific website
+    collection_name = f"{website_name}_text_data"
     collection = client.get_or_create_collection(collection_name)
 
     # Example text data to store
@@ -35,4 +34,4 @@ def process_text(text):
             ids=[text_data["id"]],
         )
 
-    print("Data has been successfully added to the collection.")
+    print(f"Data has been successfully added to the {collection_name} collection.")
