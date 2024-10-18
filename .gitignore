@@ -72,3 +72,6 @@ chroma
 
 .env
 
+# Ignore contents of vector_database folder, but not the folder itself
+vector_database/*
+!vector_database/.gitkeep
