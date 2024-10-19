@@ -5,7 +5,6 @@ from pydantic import BaseModel
 
 from scrape.similarity_search import query_db
 from scrape.selenium_scrapper import selenium_scrape_and_save_to_csv
-
 # Initialize FastAPI app
 app = FastAPI()
 
@@ -34,12 +33,13 @@ def read_root():
 
 @app.post("/scrape/")
 def scrape_and_store(scrape_request: ScrapeRequest):
-    content = selenium_scrape_and_save_to_csv(
-        scrape_request.url, scrape_request.website_name
-    )
-    if content is None:
-        raise HTTPException(status_code=500, detail="Error during scraping")
-    return {"message": "Scraping successful, content stored.", "content": content}
+    try:
+        content = selenium_scrape_and_save_to_csv(
+            scrape_request.url, scrape_request.website_name
+        )
+        return {"message": "Scraping successful, content stored.", "content": content}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
 
 @app.post("/query/")
